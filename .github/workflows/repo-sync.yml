@@ -1,0 +1,19 @@
+name: git-sync
+
+on:
+  schedule:
+  - cron: "*/2 * * * *"
+
+jobs:
+  repo-sync:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@master
+    - name: repo-sync
+      uses: repo-sync/github-sync@v2
+      with:
+        source_repo: "https://github.com/interspacechat/interspace.chat.git"
+        source_branch: "solidity-summit"
+        destination_branch: "solidity-summit"
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+
